@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Title</title>
+    <style>
+        
+      @import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
+      * {
+        box-sizing: border-box;
+        font-family: 'Fira Code', monospace;
+      }
+
+      body {
+          margin: 0;
+      }
+
+      #page {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          padding: 10px 0;
+      }
+
+      #navbar {
+        background-color: #000000;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #navbar a {
+          text-decoration: none;
+          padding: 13px;
+          color: #DDDDDD;
+      }
+
+      #navbar a:hover {
+          color: #FFFFFF;
+      }
+
+      hr {
+          border: none;
+          background-color: rgba(0, 0, 0, 0.2);
+          height: 1px;
+          width: 90%;
+      }
+
+      #footer {
+          background-color: #000000;
+          padding: 15px;
+          text-align: center;
+          color: #FFFFFF;
+      }
+
+      #footer * {
+          margin: 0;
+      }
+
+      #cvs {
+          border: 1px solid black; /* Might wanna remove when implemented */
+          width: 99%;
+          height: 75vh;
+      }
+
+      #menu {
+          border: 1px solid black;
+          width: 99%;
+          min-height: 100px;
+          margin-top: 10px;
+          display: flex;
+      }
+
+      .slider-container {
+          margin: 2px 10px;
+          font-size: 12px;
+          text-align: center;
+      }
+
+      .slider {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 100px;
+          height: 5px;
+          background: #DDD;
+          outline: none;
+          opacity: 0.7;
+          -webkit-transition: 0.2s;
+          transition: opacity 0.2s;
+          border-radius: 5px / 5px;
+      }
+
+      .slider:hover {
+          opacity: 1;
+      }
+
+      .slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 12px;
+          height: 12px;
+          background: #FF0000;
+          cursor: pointer;
+          border-radius: 50%;
+      }
+
+      .slider::-moz-slider-thumb {
+          width: 12px;
+          height: 12px;
+          background: #FF0000;
+          cursor: pointer;
+      }
+
+      .output {
+          font-weight: bold;
+      }
+
+      .arrow {
+          border: solid black;
+          border-width: 0 2px 2px 0;
+          display: inline-block;
+          padding: 3px;
+          opacity: 0.5;
+          margin: 0;
+      }
+
+      .arrow:hover {
+          opacity: 1;
+      }
+
+      .left {
+          transform: rotate(135deg);
+          -webkit-transform: rotate(135deg);
+      }
+
+      .right {
+          transform: rotate(-45deg);
+          -webkit-transform: rotate(-45deg);
+      }
+
+    </style>
+  </head>
+  <body>
+      <div id="navbar">
+          <a href="#">Link</a>
+          <a href="#">Link</a>
+          <a href="#">Link</a>
+      </div>
+      <div id="page">
+          <canvas id="cvs"></canvas>
+          <div id="menu">
+              <div class="slider-container">
+                  <label>Slider: </label><span id="range1_output" class="output">50</span>
+                  <br>
+                  <i class="arrow left" id="range1_left"></i>
+                  <input type="range" min="0" max="100" step="1" value="50" class="slider" id="range1">
+                  <i class="arrow right" id="range1_right"></i>
+              </div>
+          </div>
+      </div>
+      <div id="footer">
+          <h4>Footer</h4>
+      </div>
+
+      <script>
+          let range1 = document.getElementById("range1");
+          let output1 = document.getElementById("range1_output");
+          let leftIncr1 = document.getElementById("range1_left");
+          let rightIncr1 = document.getElementById("range1_right");
+          const incrStep1 = 1; // must be a multiple of html step attribute
+          output1.innerHTML = range1.value;
+          range1.oninput = function() {
+              output1.innerHTML = this.value;
+          }
+          leftIncr1.onclick = function() {
+              range1.value = parseFloat(range1.value) - incrStep1;
+              output1.innerHTML = range1.value;
+          }
+          rightIncr1.onclick = function() {
+              range1.value = parseFloat(range1.value) + incrStep1;
+              output1.innerHTML = range1.value;
+          }
+
+      </script>
+
+  </body>
+</html>
