@@ -63,22 +63,22 @@
       }
 
       #cvs {
-          border: 1px solid black; /* Might wanna remove when implemented */
+          border: 1px solid black;
           width: 99%;
           height: 75vh;
       }
 
       #menu {
-          border: 1px solid black;
           width: 99%;
           min-height: 100px;
           margin-top: 10px;
           display: flex;
+          flex-wrap: wrap;
+          font-size: 11px;
       }
 
       .slider-container {
-          margin: 2px 10px;
-          font-size: 12px;
+          margin: 2px 20px;
           text-align: center;
       }
 
@@ -127,6 +127,9 @@
           padding: 3px;
           opacity: 0.5;
           margin: 0;
+          -webkit-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
       }
 
       .arrow:hover {
@@ -141,6 +144,38 @@
       .right {
           transform: rotate(-45deg);
           -webkit-transform: rotate(-45deg);
+      }
+
+      .text-container {
+          margin: 2px 20px;
+          text-align: center;
+      }
+
+      .textbox {
+          font-size: 11px;
+      }
+      
+      .small {
+          width: 30px;
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+      }
+
+      input[type=number] {
+          -moz-appearance: textfield;
+      }
+
+      .dropdown-container {
+          margin: 2px 20px;
+          text-align: center;
+      }
+
+      .dropdown {
+          font-size: 11px;
       }
 
     </style>
@@ -160,6 +195,25 @@
                   <i class="arrow left" id="range1_left"></i>
                   <input type="range" min="0" max="100" step="1" value="50" class="slider" id="range1">
                   <i class="arrow right" id="range1_right"></i>
+              </div>
+              <div class="text-container">
+                  <label for="textbox1">Small text box:</label>
+                  <input type="number" class="textbox small" id="textbox_small" value="123" size="3">
+              </div>
+              <div class="text-container">
+                <label for="textbox1">Large text box:</label>
+                <br>
+                <input type="text" class="textbox" id="textbox_large" value="seems too large">
+              </div>
+              <div class="dropdown-container">
+                  <label for="dropdown1">Dropdown menu: </label>
+                  <br>
+                  <select class="dropdown" id="dropdown1">
+                      <option value="option1">Option 1</option>
+                      <option value="option2">Option 2</option>
+                      <option value="option3">Option 3</option>
+                      <option value="option4">Option 4</option>
+                  </select>
               </div>
           </div>
       </div>
@@ -184,6 +238,16 @@
           rightIncr1.onclick = function() {
               range1.value = parseFloat(range1.value) + incrStep1;
               output1.innerHTML = range1.value;
+          }
+
+          let textbox = document.getElementById("textbox_small");
+          textbox.onchange = function() {
+              console.log("text field changed to " + this.value);
+          }
+
+          let dropdown1 = document.getElementById("dropdown1");
+          dropdown1.onchange = function() {
+              console.log("dropdown item selected: " + this.value);
           }
 
       </script>
